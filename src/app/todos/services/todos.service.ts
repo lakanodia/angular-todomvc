@@ -11,7 +11,6 @@ export class TodosService {
       isComplete: false,
       id: Math.random().toString(16),
     };
-
     const updateTodos = [...this.todos$.getValue(), newTodo];
     this.todos$.next(updateTodos);
   }
