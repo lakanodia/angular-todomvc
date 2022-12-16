@@ -9,9 +9,17 @@ import { FilterEnum } from '../../types/filter.enum';
   templateUrl: './main.component.html',
 })
 export class MainComponent {
-  visibleTodos$ = new Observable<TodoInterface[]>();
+  visibleTodos$: Observable<TodoInterface[]>;
+  noTodoClass$: Observable<boolean>;
+  isAllTodosSelected$: Observable<boolean>;
 
   constructor(private todosService: TodosService) {
+    this.isAllTodosSelected$ = this.todosService.todos$.pipe(
+      map((todos) => todos.every((todo) => todo.isComplete))
+    );
+    this.noTodoClass$ = this.todosService.todos$.pipe(
+      map((todos) => todos.length === 0)
+    );
     this.visibleTodos$ = combineLatest(
       this.todosService.todos$,
       this.todosService.filter$
@@ -25,5 +33,10 @@ export class MainComponent {
         return todos;
       })
     );
+  }
+
+  toggleAllTodos(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.todosService.toggleAll(target.checked);
   }
 }
