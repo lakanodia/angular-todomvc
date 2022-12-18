@@ -20,15 +20,15 @@ export class MainComponent {
     this.noTodoClass$ = this.todosService.todos$.pipe(
       map((todos) => todos.length === 0)
     );
-    this.visibleTodos$ = combineLatest(
+    this.visibleTodos$ = combineLatest([
       this.todosService.todos$,
-      this.todosService.filter$
-    ).pipe(
+      this.todosService.filter$,
+    ]).pipe(
       map(([todos, filter]: [TodoInterface[], FilterEnum]) => {
         if (filter === FilterEnum.active) {
           return todos.filter((todo) => !todo.isComplete);
         } else if (filter === FilterEnum.completed) {
-          return todos.filter((todo) => !todo.isComplete);
+          return todos.filter((todo) => todo.isComplete);
         }
         return todos;
       })

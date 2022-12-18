@@ -6,25 +6,31 @@
   <ul class="filters">
 
     <li>
-      <a href="/"
-         [ngClass]="{selected: true}"
-         (click)="changeFilter($event, filterEnum.all)">
+      <a
+        [ngClass]="{selected: (filter$ | async) === filterEnum.all}"
+        (click)="changeFilter($event, filterEnum.all)"
+        style="cursor: pointer"
+      >
         All
       </a>
     </li>
 
     <li>
-      <a href="/"
-         [ngClass]="{selected: true}"
-         (click)="changeFilter($event, filterEnum.active)">
+      <a
+        [ngClass]="{selected: (filter$ | async) === filterEnum.active}"
+        (click)="changeFilter($event, filterEnum.active)"
+        style="cursor: pointer"
+      >
         Active
       </a>
     </li>
 
     <li>
-      <a href="/"
-         [ngClass]="{selected: true}"
-         (click)="changeFilter($event, filterEnum.completed)">
+      <a
+        [ngClass]="{selected: (filter$ | async) === filterEnum.completed}"
+        (click)="changeFilter($event, filterEnum.completed)"
+        style="cursor: pointer"
+      >
         Completed
       </a>
     </li>

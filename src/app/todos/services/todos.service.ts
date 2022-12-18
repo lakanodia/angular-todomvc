@@ -24,5 +24,11 @@ export class TodosService {
         isComplete,
       };
     });
+    this.todos$.next(updatedTodos);
+  }
+
+  changeFilter(filterName: FilterEnum): void {
+    this.filter$.next(filterName);
+    console.log(filterName);
   }
 }

@@ -11,6 +11,7 @@ export class FooterComponent {
   activeCount$: Observable<number>;
   noTodosClass$: Observable<boolean>;
   filterEnum = FilterEnum;
+  filter$: Observable<FilterEnum>;
 
   constructor(private todoService: TodosService) {
     this.activeCount$ = this.todoService.todos$.pipe(
@@ -22,7 +23,10 @@ export class FooterComponent {
     this.noTodosClass$ = this.todoService.todos$.pipe(
       map((todos) => todos.length === 0)
     );
+    this.filter$ = this.todoService.filter$;
   }
 
-  changeFilter(event: Event, filterEnum: FilterEnum) {}
+  changeFilter(event: Event, filterName: FilterEnum): void {
+    this.todoService.changeFilter(filterName);
+  }
 }
