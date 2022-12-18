@@ -13,7 +13,6 @@ export class MainComponent {
   noTodoClass$: Observable<boolean>;
   isAllTodosSelected$: Observable<boolean>;
   editingId: string | null = null;
-
   constructor(private todosService: TodosService) {
     this.isAllTodosSelected$ = this.todosService.todos$.pipe(
       map((todos) => todos.every((todo) => todo.isComplete))

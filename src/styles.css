@@ -221,6 +221,9 @@ body {
 	color: #cdcdcd;
 	text-decoration: line-through;
 }
+.line{
+  text-decoration: line-through;
+}
 
 .todo-list li .destroy {
 	display: none;
