@@ -43,4 +43,9 @@ export class TodosService {
     });
     this.todos$.next(updatedTodos);
   }
+
+  removeTodo(id: string): void {
+    const updatedTodos = this.todos$.getValue().filter((todo) => todo.id != id);
+    this.todos$.next(updatedTodos);
+  }
 }

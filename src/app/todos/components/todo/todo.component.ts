@@ -24,6 +24,7 @@ export class TodoComponent implements OnInit {
   }
   removeTodo() {
     console.log('remove');
+    this.todoService.removeTodo(this.todoProps.id);
   }
   toggleTodo() {}
   changeText(event: Event): void {
